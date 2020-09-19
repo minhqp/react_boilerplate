@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'Vbee';
+  src: local('Vbee'), url(./fonts/Vbee.woff) format('woff');
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Vbee', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
