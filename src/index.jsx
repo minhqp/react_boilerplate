@@ -4,10 +4,11 @@ import './index.css';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 import './languages';
+import router from './router';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {router}
   </React.StrictMode>,
   document.getElementById('root'),
 );
