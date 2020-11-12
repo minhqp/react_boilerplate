@@ -1,6 +1,6 @@
 import React from 'react';
-import App from '../containers/App';
+import HomeContainer from '../containers/Home';
 
 export default function Home() {
-  return <App />;
+  return <HomeContainer />;
 }
