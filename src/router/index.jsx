@@ -1,47 +1,83 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import nprogress from 'nprogress';
+import 'nprogress/nprogress.css';
 
-import PublicRoute from './PublicRoute';
-import PrivateRoute from './PrivateRoute';
-
-import routes from '../constants/route';
+import { getCookie } from '../utils/cookie';
 
 import appRoutes from './appRoutes';
 
-export default () => (
-  <BrowserRouter>
-    <Switch>
-      {appRoutes.map(
-        ({
-          path,
-          exact = true,
-          component: Component,
-          isPrivate = false,
-          ...rest
-        }) => {
-          if (!isPrivate) {
-            return (
-              <PublicRoute
-                key={path}
-                exact={exact}
-                path={path}
-                component={Component}
-                {...rest}
-              />
-            );
-          }
-          return (
-            <PrivateRoute
-              key={path}
-              exact={exact}
-              path={path}
-              component={Component}
-              {...rest}
-            />
-          );
-        },
-      )}
-      <Redirect to={routes.HOME} />
-    </Switch>
-  </BrowserRouter>
-);
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
+import Layout from '../components/Layout';
+import ROUTE from '../constants/route';
+
+const PrivateApp = () => {
+  const privateRoutes = appRoutes.filter((route) => route.isPrivate);
+
+  return (
+    <Layout>
+      <Switch>
+        {privateRoutes.map((privateRoute) => (
+          <PrivateRoute
+            path={privateRoute.path}
+            component={privateRoute.component}
+            exact
+            key={privateRoute.path}
+          />
+        ))}
+        <Redirect to={ROUTE.HOME} />
+      </Switch>
+    </Layout>
+  );
+};
+
+const AppRouter = () => {
+  const [isFirstTime, setIsFirstTime] = useState(true);
+
+  const { accessToken, verifying } = useSelector((state) => state.auth);
+
+  if (!nprogress.isStarted()) nprogress.start();
+
+  useEffect(() => {
+    nprogress.done();
+  });
+
+  useEffect(() => {
+    if (!accessToken) {
+      const accessTokenFromCookie = getCookie('accessToken');
+      if (accessTokenFromCookie) {
+        // TODO dispatch action verify token
+      }
+    }
+
+    setIsFirstTime(false);
+  }, []);
+
+  if (isFirstTime || verifying) {
+    return 'loading';
+  }
+
+  const publicRoutes = appRoutes.filter((route) => !route.isPrivate);
+
+  return (
+    <BrowserRouter>
+      <Switch>
+        {publicRoutes.map((publicRoute) => (
+          <PublicRoute
+            exact
+            path={publicRoute.path}
+            component={publicRoute.component}
+            restricted={publicRoute.restricted}
+            key={publicRoute.path}
+          />
+        ))}
+
+        <PrivateRoute component={PrivateApp} />
+      </Switch>
+    </BrowserRouter>
+  );
+};
+
+export default AppRouter;

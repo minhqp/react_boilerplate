@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import logo from './logo.svg';
 import StyledApp from './index.style';
 
-function App() {
+const App = () => {
   const { t } = useTranslation();
   return (
     <StyledApp>
@@ -20,6 +20,6 @@ function App() {
       </header>
     </StyledApp>
   );
-}
+};
 
 export default App;

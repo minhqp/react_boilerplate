@@ -2,9 +2,9 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import routes from '../constants/route';
+import ROUTE from '../constants/route';
 
-export default function PublicRoute({ component: Component, restricted, ...rest }) {
+const PublicRoute = ({ component: Component, restricted, ...rest }) => {
   const accessToken = useSelector((state) => state.auth.accessToken);
 
   return (
@@ -12,11 +12,13 @@ export default function PublicRoute({ component: Component, restricted, ...rest 
       {...rest}
       render={(props) =>
         accessToken && restricted ? (
-          <Redirect to={routes.HOME} />
+          <Redirect to={ROUTE.HOME} />
         ) : (
           <Component {...props} />
         )
       }
     />
   );
-}
+};
+
+export default PublicRoute;

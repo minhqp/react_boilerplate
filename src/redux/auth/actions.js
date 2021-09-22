@@ -4,23 +4,19 @@ export const actionTypes = {
   LOGIN_FAILURE: 'LOGIN_FAILURE',
 };
 
-export function login(email, password) {
-  return {
-    type: actionTypes.LOGIN,
-    email,
-    password,
-  };
-}
+const login = (email, password) => ({
+  type: actionTypes.LOGIN,
+  email,
+  password,
+});
 
-export function loginSuccess(accessToken) {
-  return {
-    type: actionTypes.LOGIN_SUCCESS,
-    accessToken,
-  };
-}
+const loginSuccess = (accessToken) => ({
+  type: actionTypes.LOGIN_SUCCESS,
+  accessToken,
+});
 
-export function loginFailure() {
-  return {
-    type: actionTypes.LOGIN_FAILURE,
-  };
-}
+const loginFailure = () => ({
+  type: actionTypes.LOGIN_FAILURE,
+});
+
+export { login, loginSuccess, loginFailure };

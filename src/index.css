@@ -4,8 +4,11 @@
 }
 
 body {
+  background-color: #fbfbfb !important;
+  color: #4a4a4a;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Vbee', sans-serif;
+  padding: 0;
+  font-family: 'Vbee';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

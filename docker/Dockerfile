@@ -2,6 +2,7 @@ FROM node:10.16.3
 WORKDIR /app
 COPY package.json ./
 RUN npm i
-COPY . .
+COPY public /app/public
+COPY . /app
 RUN npm run build
-CMD [ "npm", "run", "deploy" ]
+CMD [ "node", "server" ]
