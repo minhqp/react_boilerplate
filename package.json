@@ -9,7 +9,7 @@
     "deploy": "cross-env NODE_ENV=production node server"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.2",
     "camelcase-keys": "^6.2.2",
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
