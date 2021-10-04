@@ -1,9 +1,10 @@
 import { put, all, takeLatest } from 'redux-saga/effects';
-import apis from '../../apis';
+import apis from '@apis';
+import { setCookie } from '@src/utils/cookie';
+import { A_WEEK } from '@src/constants';
+import axiosClient from '@apis/api';
+
 import actions from '../actions';
-import { setCookie } from '../../utils/cookie';
-import { A_WEEK } from '../../constants';
-import axiosClient from '../../apis/api';
 
 function* loginSaga(email, password) {
   try {

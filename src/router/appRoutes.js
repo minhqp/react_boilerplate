@@ -1,7 +1,7 @@
-import Login from '../pages/Login';
-import Home from '../pages/Home';
+import Login from '@src/pages/Login';
+import Home from '@src/pages/Home';
 
-import routes from '../constants/route';
+import routes from '@src/constants/route';
 
 export default [
   {

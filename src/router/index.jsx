@@ -4,14 +4,14 @@ import { useSelector } from 'react-redux';
 import nprogress from 'nprogress';
 import 'nprogress/nprogress.css';
 
-import { getCookie } from '../utils/cookie';
+import Layout from '@src/containers/Layout';
+import ROUTE from '@src/constants/route';
+import { getCookie } from '@src/utils/cookie';
 
 import appRoutes from './appRoutes';
 
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import Layout from '../components/Layout';
-import ROUTE from '../constants/route';
 
 const PrivateApp = () => {
   const privateRoutes = appRoutes.filter((route) => route.isPrivate);

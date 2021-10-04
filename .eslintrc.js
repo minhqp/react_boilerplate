@@ -33,4 +33,18 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 0,
     'jsx-a11y/no-noninteractive-element-interactions': 0,
   },
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [
+          ['@src', './src'],
+          ['@apis', './src/apis'],
+          ['@components', './src/components'],
+          ['@containers', './src/containers'],
+          ['@redux', './src/redux'],
+        ],
+        extensions: ['.js', '.jsx', '.json']
+      }
+    }
+  }
 };

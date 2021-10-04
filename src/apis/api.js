@@ -1,6 +1,6 @@
 import axios from 'axios';
 import camelCase from 'camelcase-keys';
-import { API_URL } from '../configs';
+import { API_URL } from '@src/configs';
 
 const axiosClient = axios.create({
   baseURL: `${API_URL}/api/v1`,
