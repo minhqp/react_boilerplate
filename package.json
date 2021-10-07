@@ -6,7 +6,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "cross-env NODE_ENV=production node server"
+    "deploy": "cross-env NODE_ENV=production node server",
+    "postinstall": "husky install"
   },
   "dependencies": {
     "axios": "^0.21.2",
@@ -40,6 +41,8 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.8",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.2.0",
     "prettier": "^2.0.5",
     "react-app-rewired": "^2.1.6",
     "react-hot-loader": "^4.12.21",
@@ -56,5 +59,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "lint-staged": {
+    "*.{js,jsx}": "eslint"
   }
 }
