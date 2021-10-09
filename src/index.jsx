@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'react-perfect-scrollbar/dist/css/styles.css';
 import App from './App';
-import './index.css';
+import './index.scss';
+import './styles/scss/core.scss';
+import './assets/scss/style.scss';
 import * as serviceWorker from './serviceWorker';
 import './languages';
 

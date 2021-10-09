@@ -1,5 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-param-reassign */
 const rewireReactHotLoader = require('react-app-rewire-hot-loader');
+const SassRuleRewire = require('react-app-rewire-sass-rule');
 const path = require('path');
 
 module.exports = function override(config, env) {
@@ -14,6 +16,22 @@ module.exports = function override(config, env) {
     '@containers': path.resolve(__dirname, 'src/containers'),
     '@redux': path.resolve(__dirname, 'src/redux'),
   };
+
+  config = new SassRuleRewire()
+    .withRuleOptions({
+      test: /\.s[ac]ss$/i,
+      use: [
+        {
+          loader: 'sass-loader',
+          options: {
+            sassOptions: {
+              includePaths: ['node_modules', 'src/assets'],
+            },
+          },
+        },
+      ],
+    })
+    .rewire(config, env);
 
   return config;
 };
